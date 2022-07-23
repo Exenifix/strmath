@@ -1,6 +1,6 @@
 # strmath
 
-![tests](.github/workflows/test.yml/badge.svg)
+![tests](https://github.com/Exenifix/strmath/actions/workflows/test.yml/badge.svg)
 A module for evaluating math expressions without eval(). Currently the module supports only simple math operations (eg.
 multiplication, subtraction, division, %) but in the future there will be functions support.
 

@@ -13,8 +13,7 @@ from strmath import evaluate
 
 TEST_EXPRESSIONS_AMOUNT = int(os.getenv("TEST_EXPRESSIONS_AMOUNT", 100))
 MAX_EXPRESSION_COMPLEXITY = int(os.getenv("MAX_EXPRESSION_COMPLEXITY", 3))
-BEST_TIMES_YELLOW = 50
-BEST_TIMES_GREEN = 80
+
 FAILURES_YELLOW = 3
 FAILURES_RED = 10
 
@@ -65,7 +64,7 @@ def test_expressions():
     ]
     functions_to_test = (eval, evaluate, pee_eval, parse, InfixParser.evaluate)
     failures: list[int | str] = [0] * len(functions_to_test)
-    best_times: list[int | str] = [0] * len(functions_to_test)
+    avg_times: list[float] = [0] * len(functions_to_test)
     print()
     expressions = generate_expressions(TEST_EXPRESSIONS_AMOUNT, MAX_EXPRESSION_COMPLEXITY)
     amount = len(expressions)
@@ -105,10 +104,11 @@ def test_expressions():
             min_time = min([t for t in times if isinstance(t, (float, int))], default=1)
             colored_times = []
             for i, res in enumerate(times):
+                if res != "FAILURE":
+                    avg_times[i] = round((avg_times[i] + res) / 2, 10)
                 if res == "FAILURE":
                     color = Color.BRIGHT_RED
                 elif res == min_time:
-                    best_times[i] += 1
                     color = Color.BRIGHT_GREEN
                 else:
                     color = Color.BRIGHT_YELLOW
@@ -131,7 +131,6 @@ def test_expressions():
     )
 
     failures_percents = [int(i / amount * 100) for i in failures]
-    best_times_percents = [int(i / amount * 100) for i in best_times]
     colored_failures = []
     colored_failures_percents = []
     for i, v in enumerate(failures_percents):
@@ -145,19 +144,6 @@ def test_expressions():
         colored_failures_percents.append(
             colored(str(failures_percents[i]) + "%", foreground=color)
         )
-    colored_best_times = []
-    colored_best_times_percents = []
-    for i, v in enumerate(best_times_percents):
-        if v < BEST_TIMES_YELLOW:
-            color = Color.BRIGHT_RED
-        elif v < BEST_TIMES_GREEN:
-            color = Color.BRIGHT_YELLOW
-        else:
-            color = Color.BRIGHT_GREEN
-        colored_best_times.append(colored(best_times[i], foreground=color))
-        colored_best_times_percents.append(
-            colored(str(best_times_percents[i]) + "%", foreground=color)
-        )
 
     print()
     print("SUMMARY".center(195, "-"))
@@ -166,8 +152,7 @@ def test_expressions():
             [
                 ["Failures"] + colored_failures,
                 ["Failures (%)"] + colored_failures_percents,
-                ["Best Times"] + colored_best_times,
-                ["Best Times (%)"] + colored_best_times_percents,
+                ["Average Time"] + list(map(str, avg_times)),
             ],
             [""] + names,
             tablefmt="pretty",
@@ -189,4 +174,3 @@ def test_expressions():
         )
 
     assert failures_percents[1] < FAILURES_YELLOW
-    assert best_times_percents[1] > BEST_TIMES_GREEN

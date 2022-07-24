@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "strmath"
-version = "1.0"
+version = "1.0.1"
 description = "A module for evaluating math expressions without eval()"
 authors = ["Exenifix"]
 license = "MIT"

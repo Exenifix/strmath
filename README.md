@@ -1,6 +1,10 @@
-# strmath
-
 ![tests](https://github.com/Exenifix/strmath/actions/workflows/test.yml/badge.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/strmath)
+![License](https://img.shields.io/github/license/Exenifix/strmath)
+![CodeFactor](https://www.codefactor.io/repository/github/exenifix/strmath/badge)
+![GitHub release](https://img.shields.io/github/v/release/Exenifix/strmath?label=version)
+
+# strmath
 
 A module for evaluating math expressions without eval(). Currently the module supports only simple math operations (eg.
 multiplication, subtraction, division, %) but in the future there will be functions support.

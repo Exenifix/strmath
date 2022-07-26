@@ -2,9 +2,9 @@
 A module for evaluating simple math expressions without eval(). Licensed under MIT license (see LICENSE for details)."""
 
 
-from .tokenization import tokenize
-from .evaluation import build_evaluation_tree
 from .errors import *
+from .evaluation import EvaluationTreeNode, build_evaluation_tree
+from .tokenization import tokenize
 
 
 def evaluate(expr: str) -> int | float:
@@ -21,4 +21,7 @@ def evaluate(expr: str) -> int | float:
     :raise InvalidOperator: got non-existent operator (eg. in "(2 += 3) * 60" the += is non-existent)
     :return: The result of the expression.
     """
-    return build_evaluation_tree(tokenize(expr)).evaluate()
+    tree = build_evaluation_tree(tokenize(expr))
+    if isinstance(tree, EvaluationTreeNode):
+        return tree.evaluate()
+    return tree

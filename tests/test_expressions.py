@@ -1,13 +1,13 @@
 import os
 import time
-from random import randint, choice
+from random import choice, randint
 from typing import Any, Callable
 
-from py_expression_eval import Parser
-from mathparse.mathparse import parse
-from tabulate import tabulate
-from exencolor import Decoration, colored, Color
 import InfixParser
+from exencolor import Color, Decoration, colored
+from mathparse.mathparse import parse
+from py_expression_eval import Parser
+from tabulate import tabulate
 
 from strmath import evaluate
 
@@ -66,7 +66,15 @@ def test_expressions():
     failures: list[int | str] = [0] * len(functions_to_test)
     avg_times: list[float] = [0] * len(functions_to_test)
     print()
-    expressions = generate_expressions(TEST_EXPRESSIONS_AMOUNT, MAX_EXPRESSION_COMPLEXITY)
+    expressions = generate_expressions(
+        TEST_EXPRESSIONS_AMOUNT, MAX_EXPRESSION_COMPLEXITY
+    ) + [
+        "factorial(5)",
+        "sqrt(4) ** 2",
+        "sin(30) ** 2 + cos(30) ** 2",
+        "(50 + log(10 * 49)) // 5",
+        "pow(20, 3) + sqrt(25 ** 2)",
+    ]
     amount = len(expressions)
     for num, expr in enumerate(expressions, 1):
         results = []

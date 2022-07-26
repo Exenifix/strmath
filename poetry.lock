@@ -30,7 +30,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "exencolor"
-version = "1.1.2"
+version = "1.1.3"
 description = "A modern module for colored output."
 category = "dev"
 optional = false
@@ -153,7 +153,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6bab494a1ebbe51dc765bd74ae7615062fd9d2982387ce02f94070e21a740dcf"
+content-hash = "b5769ec3095daf235377e15bade7cbfaa9508632f257fec7dfe8eef52b9684dd"
 
 [metadata.files]
 atomicwrites = [
@@ -168,8 +168,8 @@ colorama = [
     {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
 ]
 exencolor = [
-    {file = "exencolor-1.1.2-py3-none-any.whl", hash = "sha256:2e9fc23977eb9e5134cbb4b241b6bd3c2efb8444ef4bcaf67eae217d76992429"},
-    {file = "exencolor-1.1.2.tar.gz", hash = "sha256:8ceb6bff6dc3caba1d8b36178e35a2cf2747809be030bd52c27e3d9dcf096f17"},
+    {file = "exencolor-1.1.3-py3-none-any.whl", hash = "sha256:7f59c558bf4937443a27b15e6ff2245280ede6e1eeccbac95dae21b53330bef5"},
+    {file = "exencolor-1.1.3.tar.gz", hash = "sha256:248e12759db8c5c6d9a120699fdda61932b41c36f984fccfdbcd7c03ad1ae5fa"},
 ]
 infixparser = [
     {file = "InfixParser-3.1.4-cp36-cp36m-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:620b2462a639a4f27e4aae0654a43c9d4cd22bad79ead4e4a56249e8551ffd4f"},

@@ -21,3 +21,13 @@ class InvalidOperator(InvalidExpression):
 class UnexpectedToken(InvalidExpression):
     def __init__(self, token: str):
         super().__init__("Got an unexpected token `%s`" % token)
+
+
+class IncompleteFunction(InvalidExpression):
+    def __init__(self, func: str):
+        super().__init__("Function `%s` is incomplete" % func)
+
+
+class InvalidFunction(InvalidExpression):
+    def __init__(self, func: str):
+        super().__init__("Function `%s` does not exist" % func)

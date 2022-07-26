@@ -7,3 +7,4 @@ class TokenType(Enum):
     EXPRESSION = 2
     DOT = 3
     FLOAT = 4
+    FUNCTION = 5

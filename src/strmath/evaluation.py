@@ -1,8 +1,29 @@
-from typing import TypeVar
+from typing import Callable, TypeVar
 
-from .types import Number, Tokenized, Operator
+from .types import Number, Operator, Tokenized
 
 T_ETN = TypeVar("T_ETN", bound="EvaluationTreeNode")
+
+
+class Function:
+    def __init__(self, func: Callable, *args):
+        self.func = func
+        self.args = args
+
+    def __str__(self):
+        return f"{self.func.__name__}({', '.join(map(str, self.args))})"
+
+    def __repr__(self):
+        return str(self)
+
+    def evaluate(self):
+        args = []
+        for arg in self.args:
+            if isinstance(arg, (list, Function)):
+                args.append(build_evaluation_tree(arg).evaluate())
+            else:
+                args.append(arg)
+        return self.func(*args)
 
 
 class EvaluationTreeNode:
@@ -20,7 +41,7 @@ class EvaluationTreeNode:
 
 
 def build_evaluation_tree(
-    tokenized_expr: Tokenized | Number,
+    tokenized_expr: Tokenized | Number | Function,
 ) -> EvaluationTreeNode | Number:
     """
     If the tokenized expression is a number, returns it; if it's a singleton, evaluates it; if it's a triple, builds
@@ -34,6 +55,8 @@ def build_evaluation_tree(
     """
     if isinstance(tokenized_expr, Number):
         return tokenized_expr
+    if isinstance(tokenized_expr, Function):
+        return tokenized_expr.evaluate()
     if len(tokenized_expr) == 1:
         return build_evaluation_tree(tokenized_expr[0])
     if len(tokenized_expr) == 3:

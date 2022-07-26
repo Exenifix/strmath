@@ -1,5 +1,6 @@
 from typing import Callable, TypeVar
 
+from . import InvalidFunction
 from .types import Number, Operator, Tokenized
 
 T_ETN = TypeVar("T_ETN", bound="EvaluationTreeNode")
@@ -23,7 +24,10 @@ class Function:
                 args.append(build_evaluation_tree(arg).evaluate())
             else:
                 args.append(arg)
-        return self.func(*args)
+        try:
+            return self.func(*args)
+        except TypeError:
+            raise InvalidFunction(self.func.__name__)
 
 
 class EvaluationTreeNode:

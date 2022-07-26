@@ -10,7 +10,7 @@ from .tokenization import tokenize
 def evaluate(expr: str) -> int | float:
     """
     Evaluates the expression and returns its result. Raises one of ``InvalidExpression``'s derivatives on
-    parsing failure.
+    parsing or evaluation failure.
 
     :param expr: The expression to evaluate.
     :type expr: str

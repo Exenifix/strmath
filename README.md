@@ -34,7 +34,7 @@ As [tests](https://github.com/Exenifix/strmath/actions/workflows/test.yml) show,
 | Failures (%)   | 0%     | 0%      | 30% | 75%       | 45%         |
 +----------------+--------+---------+-----+-----------+-------------+
 ```
-In the test above, 198 randomly generated samples were submitted to Python `eval()` and several other parsing libraries, including `strmath`. 
+In the test above, 198 randomly generated samples were submitted to Python `eval()` and several other parsing libraries, including `strmath`.
 As you can see, the library has 0 failures and almost same speed with native python. You can see test implementation [here](https://github.com/Exenifix/strmath/blob/master/tests/test_expressions.py).
 
 ## Features

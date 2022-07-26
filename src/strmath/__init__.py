@@ -19,6 +19,8 @@ def evaluate(expr: str) -> int | float:
     :raise InvalidToken: got neither a number nor an operator.
     :raise BracesMismatch: some braces are not paired.
     :raise InvalidOperator: got non-existent operator (eg. in "(2 += 3) * 60" the += is non-existent)
+    :raise IncompleteFunction: got function with unclosed braces
+    :raise InvalidFunction: got function that is not supported / doesn't exist or function with wrong arguments count
     :return: The result of the expression.
     """
     tree = build_evaluation_tree(tokenize(expr))

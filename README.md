@@ -42,11 +42,12 @@ As you can see, the library has 0 failures and almost same speed with native pyt
 - basic math operations (+, -, /, //, *, **, %) eg. `"2 + 5 * 2" --> 12`
 - float operations
 - braces eg. `"(2 + 5) * 2" --> 20`
+- functions from `math` module and some builtins
 
 ### Planned for Future
-- math functions
 - custom functions registration
 - correct `-` operator as neg (eg. `50+-30`)
+- mathematical constants (i.e. PI)
 
 ## Principle
 1. Tokenize expression (split it into operators and numbers)

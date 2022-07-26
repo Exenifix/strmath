@@ -1,3 +1,5 @@
+# noinspection PyUnresolvedReferences
+from math import *
 import os
 import time
 from random import choice, randint
